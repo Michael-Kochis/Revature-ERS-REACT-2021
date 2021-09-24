@@ -7,7 +7,7 @@ export const axiosWithAuth = () => {
         headers: {
             authorization: JSON.parse(token)
         },
-        baseURL: 'https://rhishisikk-api.herokuapp.com/api'
+        baseURL: 'https://revature-ers-api-2021.herokuapp.com/api'
     });
 }
 

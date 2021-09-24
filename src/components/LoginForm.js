@@ -35,12 +35,17 @@ function LoginForm(props) {
     }
 
     const postNewLogin = (newLogin) => {
+        var neoUser = {
+            ERS_USERNAME: newLogin.username,
+            ERS_PASSWORD: newLogin.password
+        };
         axios
-          .post('https://rhishisikk-api.herokuapp.com/api/auth/login', newLogin)
+          .post('https://revature-ers-api-2021.herokuapp.com/api/auth/login', neoUser)
           .then((res) => {
-            //console.log('login', res);
             const token = res.data.token;
+            const user = res.data.user;
             localStorage.setItem('token', `"${token}"`);
+            localStorage.setItem('user', `"${user}"`);
             history.push("/dashboard");
           })
           .catch((err) => {
@@ -50,7 +55,7 @@ function LoginForm(props) {
       };
 
     const goRegister = () => {
-        history.push("/");
+        history.push("/register");
     }
 
     const handleChange = (event) => {
@@ -83,7 +88,7 @@ function LoginForm(props) {
             </label>
             <button id="button-login" className="btn btn-login" 
                 disabled={disabled} onClick={handleSubmit}>Login</button>
-            <button id="button-nav-register" className="btn btn-nav btn-nav-register" onClick={goRegister}>Home</button>
+            <button id="button-nav-register" className="btn btn-nav btn-nav-register" onClick={goRegister}>Register</button>
             {props.children}
         </div>
     )
