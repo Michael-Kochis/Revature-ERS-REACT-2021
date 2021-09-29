@@ -29,8 +29,6 @@ function LoginForm(props) {
         schema.isValid(form)
             .then((valid) => {
                 setDisabled(!valid);
-                //console.log(form)
-                //console.log(!valid); 
             });
     }
 
@@ -45,7 +43,9 @@ function LoginForm(props) {
             const token = res.data.token;
             const user = res.data.user;
             localStorage.setItem('token', `"${token}"`);
-            localStorage.setItem('user', `"${user}"`);
+            localStorage.setItem('userID', `${user.ERS_USER_ID}`);
+            localStorage.setItem('userRole', `${user.USER_ROLE_ID}`);
+            
             history.push("/dashboard");
           })
           .catch((err) => {
@@ -64,7 +64,7 @@ function LoginForm(props) {
         setForm({...form, [name]: updateData});
         checkSchema(name, updateData);
     }
-
+ 
     const handleSubmit = () => {
         postNewLogin(form)
     }
