@@ -15,7 +15,6 @@ function Dashboard(props) {
             .then(res => 
                 setReimb(res.data)
             )
-        console.log('Inside UseEffect')
     },[trigger])
 
     return(
@@ -26,9 +25,14 @@ function Dashboard(props) {
         <table>
             <tr>
                 <th>Reimb ID</th>
+                <th>Description</th>
                 <th>Amount</th>
                 <th>Type</th>
                 <th>Status</th>
+                <th>Author</th>
+                <th>Resolved By</th>
+                <th>Submitted</th>
+                <th>Resolved</th>
             </tr>
             {reimb && reimb.map(el => {
                 return  <Reimbline key={el.REIMB_ID} el={el} />
