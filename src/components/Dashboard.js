@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import  { Reimbline } from './ReimbLine';
 import { useHistory } from "react-router-dom";
+import { loginAsManager } from '../utils/authUtils';
 
 function Dashboard(props) { 
     const [reimb, setReimb] = useState(null)
@@ -11,10 +12,18 @@ function Dashboard(props) {
     const history = useHistory()
 
     useEffect(()=> {
-        axiosWithAuth().get('https://revature-ers-api-2021.herokuapp.com/api/reimb')
+        if (loginAsManager()) {
+            axiosWithAuth().get('https://revature-ers-api-2021.herokuapp.com/api/reimb')
+                .then(res => 
+                    setReimb(res.data)
+                )
+        } else {
+            const userID = localStorage.getItem('userID');
+            axiosWithAuth().get(`https://revature-ers-api-2021.herokuapp.com/api/reimb/user/${userID}`)
             .then(res => 
                 setReimb(res.data)
             )
+        }
     },[trigger])
 
     return(
