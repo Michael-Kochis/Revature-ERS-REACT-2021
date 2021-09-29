@@ -2,6 +2,7 @@ import '../styles/login.css'
 import React from 'react'
 import { useState, useEffect } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import  { Reimbline } from './ReimbLine';
 import { useHistory } from "react-router-dom";
 
 function Dashboard(props) { 
@@ -14,7 +15,6 @@ function Dashboard(props) {
             .then(res => 
                 setReimb(res.data)
             )
-        console.log('Inside UseEffect')
     },[trigger])
 
     return(
@@ -25,22 +25,22 @@ function Dashboard(props) {
         <table>
             <tr>
                 <th>Reimb ID</th>
+                <th>Description</th>
                 <th>Amount</th>
                 <th>Type</th>
                 <th>Status</th>
+                <th>Author</th>
+                <th>Resolved By</th>
+                <th>Submitted</th>
+                <th>Resolved</th>
             </tr>
             {reimb && reimb.map(el => {
-                return  <tr>
-                        <td>{el.REIMB_ID}</td>
-                        <td>{el.REIMB_AMOUNT}</td>
-                        <td>{el.REIMB_TYPE_ID}</td>
-                        <td>{el.REIMB_STATUS_ID}</td>
-                    </tr>
+                return  <Reimbline key={el.REIMB_ID} el={el} />
             })}
             
 
         </table> 
-    </div>
+        </div>
     </div>
     )
 }

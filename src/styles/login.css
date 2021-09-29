@@ -16,7 +16,7 @@ h2 {
     font-size: 2rem;
 }
 
-table, .form {
+.form {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,6 +30,27 @@ table, .form {
     max-width: 30%;
     border-radius: 1rem;
     background-image: linear-gradient(to bottom, yellow, orange);
+}
+
+table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem auto;
+    padding: 2%;
+    max-width: 80%;
+    flex-flow: column nowrap;
+    color: black;
+    font-size: 1.2rem;
+    justify-self: center;
+    border-radius: 1rem;
+    background-image: linear-gradient(to bottom, yellow, orange);
+}
+
+td, th { 
+    min-width: 15%;
+    width: 8rem;
+    text-align: center;
 }
 
 .form button {
@@ -56,4 +77,3 @@ table, .form {
     border-radius: 0.5rem;
     margin: 0.2rem;
 }
-
