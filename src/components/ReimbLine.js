@@ -1,11 +1,44 @@
 import React from 'react';
+import { loginAsManager } from '../utils/authUtils';
+
+import axiosWithAuth from '../utils/axiosWithAuth';
 import { StatusToString, TypeToString } from '../utils/enumToString';
 
 function Reimbline(props) {
-    const {el} = props; 
+    let {el} = props;
+    const {trigger, setTrigger} = props; 
 
     let submit = new Date().setTime(el.REIMB_SUBMITTED);
     let resolve = new Date().setTime(el.REIMB_RESOLVED);
+
+    const approve = function(e) {
+        e.preventDefault();
+
+        el.REIMB_RESOLVED = Date.now();
+        el.REIMB_RESOLVER = localStorage.getItem('userID');
+        el.REIMB_STATUS_ID = 1;
+        submitUpdate(el);
+    }
+
+    const deny = function(e) {
+        //e.preventDefault();
+
+        el.REIMB_RESOLVED = Date.now();
+        el.REIMB_RESOLVER = localStorage.getItem('userID');
+        el.REIMB_STATUS_ID = 2;
+        submitUpdate(el);
+    }
+
+    const submitUpdate = async function (element) {
+        await axiosWithAuth()
+            .put(`/reimb/${el.REIMB_ID}`, el)
+            .then(res => {
+                el = res.data;
+                setTrigger(!trigger);
+            }).catch(err => {
+                console.log("Update error:", err)
+            })
+    }
     
     return (<tr>
         <td>{el.REIMB_ID}</td>
@@ -29,6 +62,12 @@ function Reimbline(props) {
             day: "2-digit"
             }).format(resolve)}
          </td>
+         {(el.REIMB_STATUS_ID == 0)   && loginAsManager() && 
+            <>
+                <button onClick={approve}>Approve</button>
+                <button onClick={deny}>Deny</button>
+            </>
+        }
     </tr>)
 }
 

@@ -7,20 +7,21 @@ import { useHistory } from "react-router-dom";
 import { loginAsManager } from '../utils/authUtils';
 import { NavBar } from './NavBar';
 
-function Dashboard(props) { 
-    const [reimb, setReimb] = useState(null);
-    const {trigger, setTrigger} = props;
-    const history = useHistory();
+function PendingReimbs(props) { 
+    const [reimb, setReimb] = useState(null)
+    const {trigger,setTrigger} = props
+    const history = useHistory()
 
     useEffect(()=> {
-        const userID = localStorage.getItem('userID');
-
-        axiosWithAuth().get(`https://revature-ers-api-2021.herokuapp.com/api/reimb/user/${userID}`)
-        .then(res => 
-            setReimb(res.data)
-        )
-        
-    }, [trigger])
+        if (loginAsManager()) {
+            axiosWithAuth().get('https://revature-ers-api-2021.herokuapp.com/api/reimb/status/0')
+                .then(res => 
+                    setReimb(res.data)
+                )
+        } else {
+            history.push('/dashboard');
+        }
+    },[trigger])
 
     return(
     <div>   
@@ -52,4 +53,4 @@ function Dashboard(props) {
     )
 }
 
-export default Dashboard;
+export default PendingReimbs;

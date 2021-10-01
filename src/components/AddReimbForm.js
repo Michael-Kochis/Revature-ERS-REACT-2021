@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { useHistory } from 'react-router-dom';
+import { NavBar } from './NavBar';
 
 const initialValues = {
     REIMB_DESCRIPTION: '',
@@ -26,16 +27,9 @@ const AddReimbForm = (props) => {
         newReimb.REIMB_SUBMITTED = Date.now();
         newReimb.REIMB_STATUS_ID = 0;
 
-        console.log("New Reimb " + newReimb.REIMB_DESCRIPTION);
-        console.log("New Reimb " + newReimb.REIMB_AMOUNT);
-        console.log("New Reimb " + newReimb.REIMB_TYPE_ID);
-        console.log("New Reimb " + newReimb.REIMB_AUTHOR);
-        console.log("New Reimb " + newReimb.REIMB_SUBMITTED);
-
         axiosWithAuth()
             .post('reimb/', newReimb)
             .then(res => {
-                console.log(res.data)
                 setTrigger(!trigger)
             })
             .catch(err => {
@@ -51,6 +45,7 @@ const AddReimbForm = (props) => {
 
     return (
         <div className='container'>
+            <NavBar />
             <div className='list_div'>
                 <h2>Please Add Reimb</h2>
                 <p>Fill out your Reimbursement's information</p>
