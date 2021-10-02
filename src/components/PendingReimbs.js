@@ -9,12 +9,20 @@ import { NavBar } from './NavBar';
 
 function PendingReimbs(props) { 
     const [reimb, setReimb] = useState(null)
+    const [seekStatus, setSeekStatus] = useState(0);
     const {trigger,setTrigger} = props
     const history = useHistory()
 
+    const changeHandler = (e) => {
+        e.preventDefault();
+
+        setSeekStatus(e.target.value);
+        setTrigger(!trigger);
+    }
+
     useEffect(()=> {
         if (loginAsManager()) {
-            axiosWithAuth().get('https://revature-ers-api-2021.herokuapp.com/api/reimb/status/0')
+            axiosWithAuth().get(`https://revature-ers-api-2021.herokuapp.com/api/reimb/status/${seekStatus}`)
                 .then(res => 
                     setReimb(res.data)
                 )
@@ -26,7 +34,15 @@ function PendingReimbs(props) {
     return(
     <div>   
         <NavBar />
-            <h2>My Reimbursements</h2> 
+        <h2>Reimbursements By Status</h2> 
+        <select id='status' name="REIMB_STATUS_ID" 
+            value={seekStatus} 
+            onChange={changeHandler} 
+            >
+                <option value='0'>Pending</option>
+                <option value='1'>Approved</option>
+                <option value='2'>Denied</option>
+        </select>
         <div className="tablecontainer">
         {console.log(reimb)}
         <table>

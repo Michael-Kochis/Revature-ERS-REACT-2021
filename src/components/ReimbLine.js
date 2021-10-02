@@ -62,7 +62,7 @@ function Reimbline(props) {
             day: "2-digit"
             }).format(resolve)}
          </td>
-         {(el.REIMB_STATUS_ID == 0)   && loginAsManager() && 
+         {(el.REIMB_STATUS_ID === "0")   && loginAsManager() && 
             <>
                 <button onClick={approve}>Approve</button>
                 <button onClick={deny}>Deny</button>

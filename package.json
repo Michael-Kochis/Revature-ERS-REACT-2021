@@ -1,7 +1,6 @@
 {
   "name": "revature-ers-react-2021",
   "version": "0.1.0",
-  "homepage": "https://michael-kochis.github.io/revature-ERS-REACT-2021",
   "private": false,
   "dependencies": {
     "axios": "^0.21.4",
@@ -21,8 +20,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "gh-pages -d build",
-    "predeploy": "npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

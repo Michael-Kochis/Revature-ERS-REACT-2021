@@ -30,7 +30,7 @@ The Expense Reimbursement System (ERS) will manage the process of reimbursing em
 - [x] Do the following with reimbursement requests (20 points)
 - [x] Approve/Deny pending reimbursement requests
 - [x] View all pending requests of all employees
-- [ ] View all resolved requests of all employees
+- [x] View all resolved requests of all employees
 - [ ] View reimbursement requests of a specific employee
 - [ ] View all employees (15 points)
 ### Mandatory techs

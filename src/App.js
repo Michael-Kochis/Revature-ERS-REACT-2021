@@ -20,11 +20,15 @@ function App() {
           <PrivateRoute path='/dashboard'>
              <Dashboard trigger={trigger} setTrigger={setTrigger} /> 
           </PrivateRoute>
-          <PrivateRoute path='/addreimb' component={AddReimbForm} />
+          <PrivateRoute path='/addreimb'>
+            <AddReimbForm />
+          </PrivateRoute> 
             <Route path="/login">
               <LoginForm />
             </Route>
-            <PrivateRoute path="/pendingreimb" component={PendingReimbs} />
+            <PrivateRoute path="/pendingreimb" >
+              <PendingReimbs trigger={trigger} setTrigger={setTrigger} /> 
+            </PrivateRoute>
             <Route path="/register" component={RegisterForm}/>
             <Route exact path="/" component={LoginForm} />
           </Switch>
