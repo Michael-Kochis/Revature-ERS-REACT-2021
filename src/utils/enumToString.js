@@ -1,4 +1,14 @@
 
+const RoleToString = function(value) {
+    value = parseInt(value);
+
+    switch (value) {
+        case 1: return "Manager";
+            break;
+        default: return "Employee";
+    }
+}
+
 const StatusToString = function(value) {
     value = parseInt(value);
 
@@ -26,6 +36,7 @@ const TypeToString = function(value) {
 }
 
 module.exports = {
+    RoleToString,
     StatusToString,
     TypeToString
 }

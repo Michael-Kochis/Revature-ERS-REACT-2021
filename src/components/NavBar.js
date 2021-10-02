@@ -32,6 +32,11 @@ const NavBar = function ()  {
                     Approve/Deny
                 </button>
             </Link>
+            <Link to="/userview">
+                <button type="button">
+                    View Users
+                </button>
+            </Link>
         </div>
     )
 }
