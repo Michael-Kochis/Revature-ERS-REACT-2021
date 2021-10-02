@@ -9,13 +9,6 @@ const initialValues = {
     REIMB_TYPE_ID: 0
 }
 
-const typeOptions = [
-    { value: 0, label: 'Other' },
-    { value: 1, label: 'Lodging' },
-    { value: 2, label: 'Travel' },
-    { value: 3, label: 'Food' }
-]
-
 const AddReimbForm = (props) => {
     const [newReimb, setNewReimb] = useState(initialValues);
     const history = useHistory()

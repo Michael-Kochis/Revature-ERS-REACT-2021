@@ -8,6 +8,7 @@ import LoginForm from './components/LoginForm';
 import PendingReimbs from './components/PendingReimbs';
 import RegisterForm from './components/register';
 import PrivateRoute from './components/PrivateRoute';
+import ViewAllUsers from './components/ViewAllUsers';
 
 function App() {
   let [trigger, setTrigger] = useState(false);
@@ -20,12 +21,19 @@ function App() {
           <PrivateRoute path='/dashboard'>
              <Dashboard trigger={trigger} setTrigger={setTrigger} /> 
           </PrivateRoute>
-          <PrivateRoute path='/addreimb' component={AddReimbForm} />
+          <PrivateRoute path='/addreimb'>
+            <AddReimbForm />
+          </PrivateRoute> 
             <Route path="/login">
               <LoginForm />
             </Route>
-            <PrivateRoute path="/pendingreimb" component={PendingReimbs} />
+            <PrivateRoute path="/pendingreimb" >
+              <PendingReimbs trigger={trigger} setTrigger={setTrigger} /> 
+            </PrivateRoute>
             <Route path="/register" component={RegisterForm}/>
+            <PrivateRoute path="/userview" >
+              <ViewAllUsers trigger={trigger} setTrigger={setTrigger} />
+            </PrivateRoute>
             <Route exact path="/" component={LoginForm} />
           </Switch>
       </Router>
