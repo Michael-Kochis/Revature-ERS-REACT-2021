@@ -17,6 +17,11 @@ const NavBar = function ()  {
                     Logout
                 </button>
             </Link>
+            <Link to="/profile">
+                <button type="Button" >
+                    Profile
+                </button>
+            </Link>
             <Link to="/dashboard">
                 <button type="button">
                     Dashboard

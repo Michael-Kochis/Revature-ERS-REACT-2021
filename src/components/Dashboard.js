@@ -16,11 +16,9 @@ function Dashboard(props) {
     let { userID } = useParams();
 
     useEffect(()=> {
-        console.log("Initial UID:", userID);
         if ((userID == null) || (!loginAsManager())) 
             userID = localStorage.getItem('userID');
-        console.log(userID);
-
+       
         axiosWithAuth().get(`https://revature-ers-api-2021.herokuapp.com/api/reimb/user/${userID}`)
         .then(res => 
             setReimb(res.data)

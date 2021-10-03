@@ -99,6 +99,10 @@ td, th {
     text-align: center;
 }
 
+#form-profile {
+    height: 80vh;
+}
+
 #nav-bar {
     background-color: black;
 }
