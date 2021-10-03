@@ -1,19 +1,25 @@
 import '../styles/login.css'
 import React from 'react'
 import { useState, useEffect } from 'react';
+import { useHistory, useParams } from "react-router-dom";
+
 import axiosWithAuth from '../utils/axiosWithAuth';
-import  { Reimbline } from './ReimbLine';
-import { useHistory } from "react-router-dom";
 import { loginAsManager } from '../utils/authUtils';
 import { NavBar } from './NavBar';
+import  { Reimbline } from './ReimbLine';
 
 function Dashboard(props) { 
     const [reimb, setReimb] = useState(null);
     const {trigger, setTrigger} = props;
     const history = useHistory();
 
+    let { userID } = useParams();
+
     useEffect(()=> {
-        const userID = localStorage.getItem('userID');
+        console.log("Initial UID:", userID);
+        if ((userID == null) || (!loginAsManager())) 
+            userID = localStorage.getItem('userID');
+        console.log(userID);
 
         axiosWithAuth().get(`https://revature-ers-api-2021.herokuapp.com/api/reimb/user/${userID}`)
         .then(res => 

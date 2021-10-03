@@ -18,6 +18,9 @@ function App() {
       <Router>
         <div className="logoAndHeading"></div>
           <Switch>
+          <PrivateRoute path='/dashboard/:userID'>
+             <Dashboard trigger={trigger} setTrigger={setTrigger} /> 
+          </PrivateRoute>
           <PrivateRoute path='/dashboard'>
              <Dashboard trigger={trigger} setTrigger={setTrigger} /> 
           </PrivateRoute>
@@ -31,6 +34,9 @@ function App() {
               <PendingReimbs trigger={trigger} setTrigger={setTrigger} /> 
             </PrivateRoute>
             <Route path="/register" component={RegisterForm}/>
+            <PrivateRoute path="/userview/:userID" >
+              <Dashboard trigger={trigger} setTrigger={setTrigger} />
+            </PrivateRoute>
             <PrivateRoute path="/userview" >
               <ViewAllUsers trigger={trigger} setTrigger={setTrigger} />
             </PrivateRoute>
