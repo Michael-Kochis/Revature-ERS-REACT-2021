@@ -8,6 +8,7 @@ import LoginForm from './components/LoginForm';
 import PendingReimbs from './components/PendingReimbs';
 import RegisterForm from './components/register';
 import PrivateRoute from './components/PrivateRoute';
+import ProfileEdit from './components/ProfileEdit';
 import ViewAllUsers from './components/ViewAllUsers';
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
       <Router>
         <div className="logoAndHeading"></div>
           <Switch>
+          <PrivateRoute path='/dashboard/:userID'>
+             <Dashboard trigger={trigger} setTrigger={setTrigger} /> 
+          </PrivateRoute>
           <PrivateRoute path='/dashboard'>
              <Dashboard trigger={trigger} setTrigger={setTrigger} /> 
           </PrivateRoute>
@@ -31,6 +35,15 @@ function App() {
               <PendingReimbs trigger={trigger} setTrigger={setTrigger} /> 
             </PrivateRoute>
             <Route path="/register" component={RegisterForm}/>
+            <PrivateRoute path="/userview/:userID" >
+              <ProfileEdit trigger={trigger} setTrigger={setTrigger} />
+            </PrivateRoute>
+            <PrivateRoute path="/profile/:userID">
+              <ProfileEdit trigger={trigger} setTrigger={setTrigger} />
+            </PrivateRoute>
+            <PrivateRoute path="/profile">
+            <ProfileEdit trigger={trigger} setTrigger={setTrigger} />
+            </PrivateRoute>
             <PrivateRoute path="/userview" >
               <ViewAllUsers trigger={trigger} setTrigger={setTrigger} />
             </PrivateRoute>

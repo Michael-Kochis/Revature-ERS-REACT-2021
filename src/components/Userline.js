@@ -1,12 +1,21 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import { loginAsManager } from '../utils/authUtils';
 
-import axiosWithAuth from '../utils/axiosWithAuth';
 import { RoleToString } from '../utils/enumToString';
 
 function Userline(props) {
     let {el} = props;
     const {trigger, setTrigger} = props; 
+    let history = useHistory();
+
+    const editUser = function () {
+        history.push(`/userview/${el.ERS_USER_ID}`);
+    }
+
+    const viewTickets = function() {
+        history.push(`/dashboard/${el.ERS_USER_ID}`);
+    }
     
     return (<tr>
         <td>{el.ERS_USER_ID}</td>
@@ -16,12 +25,12 @@ function Userline(props) {
         <td>{el.USER_EMAIL}</td>
         <td>{RoleToString(el.USER_ROLE_ID)}</td>
                 
-         {/* {( loginAsManager() && 
+         {( loginAsManager() && 
             <>
-                <button onClick={approve}>Approve</button>
-                <button onClick={deny}>Deny</button>
+                <button onClick={editUser}>Edit</button>
+                <button onClick={viewTickets}>View Tickets</button>
             </>
-        } */}
+         )}
     </tr>)
 }
 
