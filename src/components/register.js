@@ -28,7 +28,6 @@ function RegisterForm(props) {
         axios
           .post('https://revature-ers-api-2021.herokuapp.com/api/auth/register', neoUser)
           .then((res) => {
-            console.log(res.data);
             history.push('/login');
           })
           .catch((err) => {

@@ -44,7 +44,6 @@ function PendingReimbs(props) {
                 <option value='2'>Denied</option>
         </select>
         <div className="tablecontainer">
-        {console.log(reimb)}
         <table>
             <tr>
                 <th>Reimb ID</th>

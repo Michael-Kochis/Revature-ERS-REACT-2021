@@ -16,7 +16,7 @@ const AddReimbForm = (props) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        newReimb.REIMB_AUTHOR = localStorage.getItem('user').USER_ID;
+        newReimb.REIMB_AUTHOR = localStorage.getItem('userID');
         newReimb.REIMB_SUBMITTED = Date.now();
         newReimb.REIMB_STATUS_ID = 0;
 
@@ -29,6 +29,7 @@ const AddReimbForm = (props) => {
                 console.log('err: ', err.response)
             })
 
+            setTrigger(!trigger);
             history.push('./dashboard')
     }
 
@@ -40,8 +41,8 @@ const AddReimbForm = (props) => {
         <div className='container'>
             <NavBar />
             <div className='list_div'>
-                <h2>Please Add Reimb</h2>
-                <p>Fill out your Reimbursement's information</p>
+                <h2 className="h-42">Please Add Reimb</h2>
+                <p className="p-40">Fill out your Reimbursement's information</p>
                 <form className='form' onSubmit={submitHandler}>
                     <label htmlFor="description" />Description
                     <input

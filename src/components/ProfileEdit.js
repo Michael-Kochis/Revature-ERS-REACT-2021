@@ -27,7 +27,7 @@ function ProfileEdit(props) {
         const token = localStorage.getItem('token');
 
         if (userID == null)
-            userID = localStorage.get('userID');
+            userID = localStorage.getItem('userID');
 
         var neoUser = {
             ERS_USER_ID: userID,
@@ -45,8 +45,7 @@ function ProfileEdit(props) {
                 'authorization': JSON.parse(token)
             }
         }).then((res) => {
-            console.log(res.data);
-            history.push('/login');
+            history.push('/dashboard');
           })
           .catch((err) => {
             console.log({err});

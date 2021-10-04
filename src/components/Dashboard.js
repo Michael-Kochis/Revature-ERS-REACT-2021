@@ -31,7 +31,6 @@ function Dashboard(props) {
         <NavBar />
             <h2>My Reimbursements</h2> 
         <div className="tablecontainer">
-        {console.log(reimb)}
         <table>
             <tr>
                 <th>Reimb ID</th>

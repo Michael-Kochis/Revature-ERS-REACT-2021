@@ -27,10 +27,9 @@ function ViewAllUsers(props) {
     return(
     <div>   
         <NavBar />
-        <h2>All Users</h2> 
+        <h2 className="h-42" >All Users</h2> 
         
         <div className="tablecontainer">
-        {console.log(users)}
         <table>
             <tr>
                 <th class="th-long">User ID</th>

@@ -26,7 +26,7 @@ function App() {
              <Dashboard trigger={trigger} setTrigger={setTrigger} /> 
           </PrivateRoute>
           <PrivateRoute path='/addreimb'>
-            <AddReimbForm />
+            <AddReimbForm trigger={trigger} setTrigger={setTrigger} />
           </PrivateRoute> 
             <Route path="/login">
               <LoginForm />
